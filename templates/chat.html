@@ -29,6 +29,12 @@
             });
         });
 
+        function sending_message() {
+            text = $('#text').val();
+            $('#text').val('');
+            socket.emit('text',{msg : text})
+        }
+
         function leave_room() {
             socket.emit('left', {}, function() {
                 socket.disconnect();
@@ -43,6 +49,7 @@
         <h1> Flask Chat App: {{ room }}</h1>
         <textarea id="chat" cols="80" rows="20"></textarea><br><br>
         <input id="text" size="80" placeholder="Enter your message here"><br><br>
+        <button onClick="sending_message()" id="sending-message">Send</button>
         <a href="#" onclick="leave_room();">Leave this room</a>
     </body>
 </html>
